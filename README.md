@@ -38,4 +38,4 @@ yarn
 yarn start
 ```
 
-<p align="center">Com 💙 <a href="https://www.linkedin.com/in/helitonoliveira/">Héliton Oliveira</a></p>
+<p align="center">Com 💙 <a href="https://www.linkedin.com/in/helitonoliveira/" target="_blank" style="color: #3d3d4d;">Héliton Oliveira</a></p>
