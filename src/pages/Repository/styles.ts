@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Header = styled.header`
   display: flex;
@@ -76,6 +77,12 @@ export const RepositoryInfo = styled.section`
   }
 `;
 
+export const Gif = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Issues = styled.div`
   margin-top: 80px;
 
@@ -119,6 +126,41 @@ export const Issues = styled.div`
     svg {
       margin-left: auto;
       color: #cbcbd6;
+    }
+  }
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+
+  div {
+    display: flex;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 20px;
+    width: 210px;
+    height: 70px;
+    background: #04d361;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${shade(0.2, '#04d361')};
+    }
+
+    :disabled {
+      opacity: 0.2;
     }
   }
 `;

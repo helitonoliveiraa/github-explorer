@@ -5,8 +5,9 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg';
+import gitComit from '../../assets/comit.gif';
 
-import { Header, RepositoryInfo, Issues } from './styles';
+import { Header, RepositoryInfo, Issues, Pagination, Gif } from './styles';
 
 interface RepositoryParams {
   repository: string;
@@ -35,6 +36,10 @@ interface Issue {
 const Repository: React.FC = () => {
   const [repository, setRepository] = useState<Repository | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
+  const [total, setTotal] = useState(0);
+  const [limit, setlimit] = useState(5);
+  const [pages, setPages] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const { params } = useRouteMatch<RepositoryParams>();
 
@@ -42,10 +47,26 @@ const Repository: React.FC = () => {
     api.get(`repos/${params.repository}`).then(response => {
       setRepository(response.data);
     });
-    api.get(`repos/${params.repository}/issues`).then(response => {
-      setIssues(response.data);
-    });
-  }, [params.repository]);
+    api
+      .get(
+        `repos/${params.repository}/issues?page=${currentPage}&per_page=${limit}`,
+      )
+      .then(response => {
+        const issuesArr: [] = response.data;
+        setTotal(issuesArr.length);
+
+        const totalPage = Math.ceil(issuesArr.length / limit);
+
+        const pagesArr: number[] = [];
+        for (let i = 1; i <= totalPage; i += 1) {
+          pagesArr.push(i);
+        }
+
+        setPages(pagesArr);
+
+        setIssues(issuesArr);
+      });
+  }, [params.repository, currentPage]);
 
   return (
     <>
@@ -58,7 +79,7 @@ const Repository: React.FC = () => {
         </Link>
       </Header>
 
-      {repository && (
+      {repository ? (
         <RepositoryInfo>
           <header>
             <img
@@ -89,6 +110,10 @@ const Repository: React.FC = () => {
             </li>
           </ul>
         </RepositoryInfo>
+      ) : (
+        <Gif>
+          <img src={gitComit} alt="gif-github" />
+        </Gif>
       )}
 
       <Issues>
@@ -103,6 +128,26 @@ const Repository: React.FC = () => {
           </a>
         ))}
       </Issues>
+
+      <Pagination>
+        <button
+          type="button"
+          disabled={currentPage < 2}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          <FiChevronLeft size={20} />
+          Previus
+        </button>
+
+        <button
+          type="button"
+          disabled={pages.length === 0}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+          <FiChevronRight size={20} />
+        </button>
+      </Pagination>
     </>
   );
 };
