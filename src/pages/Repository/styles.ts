@@ -147,7 +147,7 @@ export const Pagination = styled.div`
     margin-left: 20px;
     width: 210px;
     height: 70px;
-    background: #04d361;
+    background: #0000cd;
     font-weight: bold;
     color: #fff;
     border: 0;
@@ -156,7 +156,7 @@ export const Pagination = styled.div`
     transition: background 0.2s;
 
     &:hover {
-      background: ${shade(0.2, '#04d361')};
+      background: ${shade(0.2, '#0000CD')};
     }
 
     :disabled {

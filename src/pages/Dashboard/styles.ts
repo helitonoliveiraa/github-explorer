@@ -34,6 +34,15 @@ export const Form = styled.form<FormProps>`
       props.hasError &&
       css`
         border-color: #e53030;
+        span {
+          display: block;
+          text-align: center;
+          color: #e53030;
+          background-color: #e53030;
+          max-width: 501px;
+          margin: 2px 0px 0px 3px;
+          border-radius: 4px;
+        }
       `}
 
     &::placeholder {
@@ -44,7 +53,7 @@ export const Form = styled.form<FormProps>`
   button {
     width: 210px;
     height: 70px;
-    background: #04d361;
+    background: #0000cd;
     font-weight: bold;
     color: #fff;
     border: 0;
@@ -52,15 +61,19 @@ export const Form = styled.form<FormProps>`
     transition: background 0.2s;
 
     &:hover {
-      background: ${shade(0.2, '#04d361')};
+      background: ${shade(0.2, '#0000CD')};
     }
   }
 `;
 
 export const Error = styled.span`
   display: block;
-  color: #e53030;
-  margin-top: 8px;
+  text-align: center;
+  color: #fff;
+  background-color: #e53030;
+  max-width: 501px;
+  margin: 2px 0px 0px 3px;
+  border-radius: 4px;
 `;
 
 export const Repositories = styled.div`

@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import Skeleton from 'react-loading-skeleton';
+
 import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg';
-import gitComit from '../../assets/comit.gif';
 
 import { Header, RepositoryInfo, Issues, Pagination, Gif } from './styles';
 
@@ -78,7 +79,6 @@ const Repository: React.FC = () => {
           Voltar
         </Link>
       </Header>
-
       {repository ? (
         <RepositoryInfo>
           <header>
@@ -111,43 +111,48 @@ const Repository: React.FC = () => {
           </ul>
         </RepositoryInfo>
       ) : (
-        <Gif>
-          <img src={gitComit} alt="gif-github" />
-        </Gif>
+        ''
       )}
+      {repository ? (
+        <Issues>
+          {issues.map(issue => (
+            <a key={issue.id} href={issue.html_url}>
+              <div>
+                <strong>{issue.title}</strong>
+                <p>{issue.user.login}</p>
+              </div>
 
-      <Issues>
-        {issues.map(issue => (
-          <a key={issue.id} href={issue.html_url}>
-            <div>
-              <strong>{issue.title}</strong>
-              <p>{issue.user.login}</p>
-            </div>
+              <FiChevronRight size={20} />
+            </a>
+          ))}
+        </Issues>
+      ) : (
+        ''
+      )}
+      {repository ? (
+        <Pagination>
+          <button
+            type="button"
+            disabled={currentPage < 2}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            <FiChevronLeft size={20} />
+            Previus
+          </button>
 
+          <button
+            type="button"
+            disabled={pages.length === 0}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
             <FiChevronRight size={20} />
-          </a>
-        ))}
-      </Issues>
-
-      <Pagination>
-        <button
-          type="button"
-          disabled={currentPage < 2}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          <FiChevronLeft size={20} />
-          Previus
-        </button>
-
-        <button
-          type="button"
-          disabled={pages.length === 0}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-          <FiChevronRight size={20} />
-        </button>
-      </Pagination>
+          </button>
+        </Pagination>
+      ) : (
+        ''
+      )}
+      ;
     </>
   );
 };
