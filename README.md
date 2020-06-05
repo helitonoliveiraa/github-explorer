@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./.github/github-explorer-blue.gif" width="400" />
+  <img src="./.github/github-explorer-blue.gif" width="600" />
 </h1>
 
 <h2 align="center">Primeiro projeto com React</h2>
