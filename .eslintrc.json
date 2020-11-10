@@ -36,7 +36,6 @@
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
     "no-use-before-define": "off",
-    // "react/jsx-one-expression-per-line": "off",
     "@typescript-eslint/ban-types": "off",
     "no-unused-vars": "off",
     "arrow-parens": "off",

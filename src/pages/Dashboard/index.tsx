@@ -10,7 +10,7 @@ import {
   Title, Form, Repositories, Error,
 } from './styles';
 
-interface Respository {
+interface Repository {
   full_name: string;
   description: string;
   owner: {
@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
   const [inputError, setInputError] = useState('');
   const [newRepository, setNewRepository] = useState('');
 
-  const [repositories, setRepositories] = useState<Respository[]>(() => {
+  const [repositories, setRepositories] = useState<Repository[]>(() => {
     const storagedRepositories = localStorage.getItem(
       '@GithubExplore:repositories',
     );
@@ -53,7 +53,7 @@ const Dashboard: React.FC = () => {
     }
 
     try {
-      const response = await api.get<Respository>(`repos/${newRepository}`);
+      const response = await api.get<Repository>(`repos/${newRepository}`);
 
       const repository = response.data;
 
