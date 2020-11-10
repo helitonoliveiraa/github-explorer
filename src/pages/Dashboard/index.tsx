@@ -1,4 +1,5 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 
 import logoImg from '../../assets/logo.svg';
@@ -21,7 +22,25 @@ interface Respository {
 const Dashboard: React.FC = () => {
   const [inputError, setInputError] = useState('');
   const [newRepository, setNewRepository] = useState('');
-  const [repositories, setRepositories] = useState<Respository[]>([]);
+
+  const [repositories, setRepositories] = useState<Respository[]>(() => {
+    const storagedRepositories = localStorage.getItem(
+      '@GithubExplore:repositories',
+    );
+
+    if (storagedRepositories) {
+      return JSON.parse(storagedRepositories);
+    }
+
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      '@GithubExplore:repositories',
+      JSON.stringify(repositories),
+    );
+  }, [repositories]);
 
   async function handleAddRepository(
     event: FormEvent<HTMLFormElement>,
@@ -65,7 +84,10 @@ const Dashboard: React.FC = () => {
 
       <Repositories>
         {repositories.map(repository => (
-          <a key={repository.owner.login} href="teste">
+          <Link
+            key={repository.owner.login}
+            to={`/repository/${repository.full_name}`}
+          >
             <img
               src={repository.owner.avatar_url}
               alt={repository.owner.login}
@@ -77,7 +99,7 @@ const Dashboard: React.FC = () => {
             </div>
 
             <FiChevronRight size={20} color="#C9C9D4" />
-          </a>
+          </Link>
         ))}
       </Repositories>
     </>
