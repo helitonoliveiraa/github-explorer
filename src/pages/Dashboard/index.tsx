@@ -1,13 +1,20 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+// eslint-disable-next-line prettier/prettier
+import React, {
+  useState, useEffect, FormEvent, useContext,
+} from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
+import { ThemeContext } from 'styled-components';
 
-import logoImg from '../../assets/logo.svg';
+import logoLight from '../../assets/logo-light.svg';
+import logoDark from '../../assets/logo-dark.svg';
+import SwitchButton from '../../components/SwitchButton';
+
 import api from '../../service/api';
 
 // eslint-disable-next-line prettier/prettier
 import {
-  Title, Form, Repositories, Error,
+  Title, Form, Repositories, Error, Header,
 } from './styles';
 
 interface Repository {
@@ -20,6 +27,8 @@ interface Repository {
 }
 
 const Dashboard: React.FC = () => {
+  const { title } = useContext(ThemeContext);
+
   const [inputError, setInputError] = useState('');
   const [newRepository, setNewRepository] = useState('');
 
@@ -67,7 +76,14 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <img src={logoImg} alt="Logo Github Explore" />
+      <Header>
+        <img
+          src={title === 'light' ? logoLight : logoDark}
+          alt="Logo Github Explore"
+        />
+
+        <SwitchButton />
+      </Header>
       <Title>Explore Repositórios no Github.</Title>
 
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>

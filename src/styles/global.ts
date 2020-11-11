@@ -1,6 +1,9 @@
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable indent */
 import { createGlobalStyle } from 'styled-components';
 
-import githubBackground from '../assets/github-background.svg';
+import githubBackgroundLight from '../assets/github-background-light.svg';
+import githubBackgroundDark from '../assets/github-background-dark.svg';
 
 export default createGlobalStyle`
   * {
@@ -10,8 +13,12 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+
   body {
-    background: #F2F2FA url(${githubBackground}) no-repeat 70% top;
+    background: ${({ theme }) => theme.colors.background}   url(${({ theme }) =>
+  theme.title === 'light'
+    ? githubBackgroundLight
+    : githubBackgroundDark}) no-repeat 70% top;
     -webkit-font-smoothing: antialiased;
   }
 

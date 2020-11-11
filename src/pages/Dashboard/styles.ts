@@ -1,14 +1,20 @@
 /* eslint-disable prettier/prettier */
 import styled, { css } from 'styled-components';
-import { shade } from 'polished';
+import { shade, lighten } from 'polished';
 
 interface FormProps {
   hasError: boolean;
 }
 
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const Title = styled.h1`
   font-size: 48px;
-  color: #3a3a3a;
+  color: ${props => props.theme.colors.title};
   max-width: 450px;
   margin-top: 100px;
   line-height: 56px;
@@ -26,8 +32,9 @@ export const Form = styled.form<FormProps>`
     padding: 0px 30px;
     border-radius: 5px 0 0 5px;
     font-size: 20px;
-    color: #3a3a3a;
-    border: 2px solid #fff;
+    color: ${({ theme }) => shade(0.6, theme.colors.backgroundItem)};
+    border: 2px solid ${({ theme }) => lighten(0.6, theme.colors.backgroundItem)};
+    background: ${({ theme }) => lighten(0.6, theme.colors.backgroundItem)};
 
     ${({ hasError }) => hasError
       && css`
@@ -36,7 +43,7 @@ export const Form = styled.form<FormProps>`
       `}
 
     ::placeholder {
-      color: #a8a8b3;
+      color: ${({ theme }) => shade(0.3, theme.colors.backgroundItem)};
       font-size: 20px;
     }
   }
@@ -45,7 +52,7 @@ export const Form = styled.form<FormProps>`
     width: 210px;
     border: none;
     border-radius: 0 5px 5px 0;
-    background: #04d361;
+    background: ${props => props.theme.colors.primary};
     color: #fff;
     font-size: 18px;
     font-weight: bold;
@@ -73,7 +80,7 @@ export const Repositories = styled.ul`
     height: 112px;
     padding: 16px;
     border-radius: 5px;
-    background: #fff;
+    background: ${({ theme }) => theme.colors.backgroundItem};
     text-decoration: none;
 
     transition: transform 0.2s;
@@ -98,12 +105,12 @@ export const Repositories = styled.ul`
 
       strong {
         font-size: 24px;
-        color: #3d3d4d;
+        color: ${({ theme }) => theme.colors.titleCard};
       }
 
       p {
         font-size: 18px;
-        color: #a8a8b3;
+        color: ${({ theme }) => theme.colors.description};
       }
     }
 
