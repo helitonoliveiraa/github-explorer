@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
+import { ThemeContext } from 'styled-components';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-import logoImg from '../../assets/logo-light.svg';
+import logoLight from '../../assets/logo-light.svg';
+import logoDark from '../../assets/logo-dark.svg';
+import SwitchButton from '../../components/SwitchButton';
+
 import api from '../../service/api';
 
 import { Header, RepositoryInfo, Issues } from './styles';
@@ -33,6 +37,8 @@ interface Issue {
 }
 
 const Repository: React.FC = () => {
+  const { title } = useContext(ThemeContext);
+
   const [repository, setRepository] = useState<RepositoryProps | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
 
@@ -51,12 +57,15 @@ const Repository: React.FC = () => {
   return (
     <>
       <Header>
-        <img src={logoImg} alt="Logo" />
+        <img src={title === 'light' ? logoLight : logoDark} alt="Logo" />
 
-        <Link to="/">
-          <FiChevronLeft size={20} color="#A8A8B3" />
-          Voltar
-        </Link>
+        <div>
+          <Link to="/">
+            <FiChevronLeft size={20} color="#A8A8B3" />
+            Voltar
+          </Link>
+          <SwitchButton />
+        </div>
       </Header>
 
       {repository && (

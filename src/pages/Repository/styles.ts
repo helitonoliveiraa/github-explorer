@@ -6,22 +6,27 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  a {
+  div {
     display: flex;
-    align-items: center;
-    text-decoration: none;
 
-    svg {
-      margin-right: 4px;
-    }
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      margin-right: 10px;
 
-    font-size: 16px;
-    color: #a8a8b3;
-    font-weight: bold;
-    transition: color 0.2s;
+      svg {
+        margin-right: 4px;
+      }
 
-    &:hover {
-      color: ${shade(0.2, '#a8a8b3')};
+      font-size: 16px;
+      color: #a8a8b3;
+      font-weight: bold;
+      transition: color 0.2s;
+
+      &:hover {
+        color: ${shade(0.2, '#a8a8b3')};
+      }
     }
   }
 `;
@@ -44,7 +49,7 @@ export const RepositoryInfo = styled.section`
 
       strong {
         font-size: 36px;
-        color: #3d3d4d;
+        color: ${({ theme }) => theme.colors.title};
       }
 
       P {
@@ -68,7 +73,7 @@ export const RepositoryInfo = styled.section`
       strong {
         display: block;
         font-size: 36px;
-        color: #3d3d4d;
+        color: ${({ theme }) => theme.colors.title};
       }
 
       span {
@@ -90,9 +95,10 @@ export const Issues = styled.div`
     height: 112px;
     padding: 0 24px;
     border-radius: 5px;
-    background: #fff;
+    background: ${({ theme }) => theme.colors.backgroundItem};
+    border: 2px solid ${({ theme }) => theme.colors.backgroundItem};
     text-decoration: none;
-    transition: transform 0.2s;
+    transition: transform 0.3s, border-color 0.3s;
 
     & + a {
       margin-top: 16px;
@@ -100,17 +106,18 @@ export const Issues = styled.div`
 
     &:hover {
       transform: translateX(10px);
+      border-color: #04d361;
     }
 
     div {
       strong {
         font-size: 24px;
-        color: #3d3d4d;
+        color: ${({ theme }) => theme.colors.titleCard};
       }
 
       p {
         font-size: 18px;
-        color: #a8a8b3;
+        color: ${({ theme }) => theme.colors.description};
         margin-top: 8px;
       }
     }
