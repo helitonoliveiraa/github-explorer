@@ -1,5 +1,7 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useContext, createContext } from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
+
+import usePersistedState from '../utils/usePersistedState';
 
 import light from '../styles/themes/light';
 import dark from '../styles/themes/dark';
@@ -12,7 +14,7 @@ const ThemeContext = createContext<Theme>({} as Theme);
 
 // eslint-disable-next-line react/prop-types
 export const AppThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState(light);
+  const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
 
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
