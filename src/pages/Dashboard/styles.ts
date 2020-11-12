@@ -43,7 +43,7 @@ export const Form = styled.form<FormProps>`
       `}
 
     ::placeholder {
-      color: ${({ theme }) => shade(0.3, theme.colors.backgroundItem)};
+      color: ${({ theme }) => theme.colors.secondary};
       font-size: 20px;
     }
   }
@@ -81,12 +81,14 @@ export const Repositories = styled.ul`
     padding: 16px;
     border-radius: 5px;
     background: ${({ theme }) => theme.colors.backgroundItem};
+    border: 2px solid ${({ theme }) => theme.colors.backgroundItem};
     text-decoration: none;
 
-    transition: transform 0.2s;
+    transition: transform 0.3s, border-color 0.3s;
 
     &:hover {
       transform: translateX(10px);
+      border-color: #04d361;
     }
 
     & + a {

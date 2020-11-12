@@ -15,10 +15,11 @@ export default createGlobalStyle`
 
 
   body {
-    background: ${({ theme }) => theme.colors.background}   url(${({ theme }) =>
-  theme.title === 'light'
-    ? githubBackgroundLight
-    : githubBackgroundDark}) no-repeat 70% top;
+    background: ${({ theme }) => theme.colors.background}
+    url(${({ theme }) =>
+      theme.title === 'light'
+        ? githubBackgroundLight
+        : githubBackgroundDark}) no-repeat 70% top;
     -webkit-font-smoothing: antialiased;
   }
 
