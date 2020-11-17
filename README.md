@@ -28,6 +28,14 @@
 
 <br /><br />
 
+
+<p  align="center">
+  Vídeo demo<br/>
+  <a href="https://youtu.be/XzqVy9ccoqo">
+    <img src="./.github/logoyoutube.png" atl="Github-Explorer" width="100">
+  </a>
+</p>
+
 # :memo: Sobre
 
 O Github Explore é uma aplicação que desenvolvi no decorrer das aulas do `bootcamp goStack da Rocketseat`.
