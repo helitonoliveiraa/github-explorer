@@ -1,5 +1,10 @@
-import styled from 'styled-components';
+/* eslint-disable operator-linebreak */
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
+
+interface ButtonProps {
+  isDesable?: boolean;
+}
 
 export const Header = styled.header`
   display: flex;
@@ -86,8 +91,21 @@ export const RepositoryInfo = styled.section`
   }
 `;
 
+export const SelectContainer = styled.div`
+  margin-top: 70px;
+
+  label {
+    color: #6c6c80;
+    margin: 5px;
+
+    select {
+      border: 1px solid #6c6c80;
+    }
+  }
+`;
+
 export const Issues = styled.div`
-  margin-top: 80px;
+  margin-top: 10px;
 
   a {
     display: flex;
@@ -106,7 +124,7 @@ export const Issues = styled.div`
 
     &:hover {
       transform: translateX(10px);
-      border-color: #04d361;
+      border-color: ${({ theme }) => theme.colors.primary};
     }
 
     div {
@@ -126,4 +144,89 @@ export const Issues = styled.div`
       margin-left: auto;
     }
   }
+`;
+
+export const PaginationContainer = styled.footer`
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  div {
+    font-size: 20;
+    color: #6c6c80;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      margin: 0 30px;
+      color: #6c6c80;
+      padding: 0 4px;
+    }
+  }
+
+  &::after {
+    content: '';
+  }
+`;
+
+export const PreviuosButton = styled.button<ButtonProps>`
+  height: 72px;
+  border: none;
+  border-radius: 5px;
+  padding: 0 20px;
+  background: ${({ theme }) => theme.colors.primary};
+  color: #fff;
+  opacity: 1;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => shade(0.2, theme.colors.primary)};
+  }
+
+  & + button {
+    margin-left: 30px;
+  }
+
+  ${({ isDesable }) =>
+    isDesable &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+      :disabled ;
+    `}
+`;
+
+export const NextButton = styled.button<ButtonProps>`
+  height: 72px;
+  border: none;
+  border-radius: 5px;
+  padding: 0 20px;
+  background: ${({ theme }) => theme.colors.primary};
+  opacity: 1;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => shade(0.2, theme.colors.primary)};
+  }
+
+  & + button {
+    margin-left: 30px;
+  }
+
+  ${({ isDesable }) =>
+    isDesable &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+      :disabled ;
+    `}
 `;
