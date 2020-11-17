@@ -50,6 +50,20 @@ Fui um pouco além do que foi ensinado na aula e fiz alguma alterações;
 ✅ Selecionar quantos itens por página<br />
 ✅ Deploy da aplicação <br />
 
+# :wrench: Tecnogias utilizadas
+
+[ReactJS](https://pt-br.reactjs.org/)
+[TypeScript](https://www.typescriptlang.org/)
+[Styled Componts](https://styled-components.com/)
+[polished](https://polished.js.org/)
+[Axios](https://github.com/axios/axios)
+[ESlint](https://eslint.org/)
+[EditorConfig](https://editorconfig.org/)
+[Prettier](https://prettier.io/)
+
+
+
+
 # :arrow_down: Como baixar o projeto
 
 ```bash

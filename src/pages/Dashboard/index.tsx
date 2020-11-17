@@ -29,6 +29,7 @@ interface Repository {
 const Dashboard: React.FC = () => {
   const { title } = useContext(ThemeContext);
 
+  const [focus, setFocus] = useState(false);
   const [inputError, setInputError] = useState('');
   const [newRepository, setNewRepository] = useState('');
 
@@ -69,9 +70,16 @@ const Dashboard: React.FC = () => {
       setRepositories([...repositories, repository]);
       setNewRepository('');
       setInputError('');
+      setFocus(false);
     } catch (err) {
+      setFocus(false);
       setInputError('Erro nas busca por esse repositório!');
     }
+  }
+
+  function handleFocus() {
+    setInputError('');
+    setFocus(true);
   }
 
   return (
@@ -86,10 +94,16 @@ const Dashboard: React.FC = () => {
       </Header>
       <Title>Explore Repositórios no Github.</Title>
 
-      <Form hasError={!!inputError} onSubmit={handleAddRepository}>
+      <Form
+        hasError={!!inputError}
+        hasFocus={!!focus}
+        onSubmit={handleAddRepository}
+      >
         <input
           type="text"
           placeholder="Digite o nome do repositório"
+          onFocus={e => handleFocus()}
+          onBlur={e => setFocus(false)}
           value={newRepository}
           onChange={e => setNewRepository(e.target.value)}
         />

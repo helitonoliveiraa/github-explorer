@@ -4,6 +4,7 @@ import { shade, lighten } from 'polished';
 
 interface FormProps {
   hasError: boolean;
+  hasFocus: boolean;
 }
 
 export const Header = styled.header`
@@ -33,8 +34,8 @@ export const Form = styled.form<FormProps>`
     border-radius: 5px 0 0 5px;
     font-size: 20px;
     color: ${({ theme }) => shade(0.6, theme.colors.backgroundItem)};
-    border: 2px solid ${({ theme }) => lighten(0.6, theme.colors.backgroundItem)};
-    background: ${({ theme }) => lighten(0.6, theme.colors.backgroundItem)};
+    border: 2px solid ${({ theme }) => theme.colors.backgroundInput};
+    background: ${({ theme }) => theme.colors.backgroundInput};
 
     ${({ hasError }) => hasError
       && css`
@@ -46,20 +47,25 @@ export const Form = styled.form<FormProps>`
       color: ${({ theme }) => theme.colors.secondary};
       font-size: 20px;
     }
+
+    ${({ hasFocus }) => hasFocus && css`
+      border-color: ${({ theme }) => theme.colors.primary};
+      border-right: none;
+    `}
   }
 
   button {
     width: 210px;
     border: none;
     border-radius: 0 5px 5px 0;
-    background: ${props => props.theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
     color: #fff;
     font-size: 18px;
     font-weight: bold;
     transition: background 0.2s;
 
     &:hover {
-      background: ${shade(0.2, '#04d361')};
+      background: ${({ theme }) => shade(0.2, theme.colors.primary)};
     }
   }
 `;
@@ -88,7 +94,7 @@ export const Repositories = styled.ul`
 
     &:hover {
       transform: translateX(10px);
-      border-color: #04d361;
+      border-color: ${({ theme }) => theme.colors.primary};
     }
 
     & + a {
