@@ -7,8 +7,8 @@
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304ccd3">
 
-  <a href="https://github.com/heliton1988/happy/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/heliton1988/happy?style=social">
+  <a href="https://github.com/helitonoliveiraa/happy/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/helitonoliveiraa/github-explorer?style=social">
   </a>
 </p>
 
