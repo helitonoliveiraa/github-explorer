@@ -10,7 +10,7 @@ import logoLight from '../../assets/logo-light.svg';
 import logoDark from '../../assets/logo-dark.svg';
 import SwitchButton from '../../components/SwitchButton';
 
-import api from '../../service/api';
+import api from '../../services/api';
 
 // eslint-disable-next-line prettier/prettier
 import {
@@ -59,6 +59,17 @@ const Dashboard: React.FC = () => {
 
     if (!newRepository) {
       setInputError('Digite o autor/nome do repositório!');
+      return;
+    }
+
+    const repositoryExists = repositories.find(
+      repository => repository.full_name === newRepository,
+    );
+
+    if (repositoryExists) {
+      setInputError(
+        'Este repositório já está na lista, informe um novo repositório!',
+      );
       return;
     }
 

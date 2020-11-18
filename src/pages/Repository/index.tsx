@@ -13,7 +13,7 @@ import logoLight from '../../assets/logo-light.svg';
 import logoDark from '../../assets/logo-dark.svg';
 import SwitchButton from '../../components/SwitchButton';
 
-import api from '../../service/api';
+import api from '../../services/api';
 
 // eslint-disable-next-line prettier/prettier
 import {
@@ -105,6 +105,11 @@ const Repository: React.FC = () => {
     }
   }
 
+  const handleLimits = useCallback(event => {
+    setLimit(Number(event.target.value));
+    setCurrentPage(1);
+  }, []);
+
   return (
     <>
       <Header>
@@ -155,7 +160,7 @@ const Repository: React.FC = () => {
       <SelectContainer>
         <label htmlFor="qtd">
           Issues por página
-          <select id="qtd" onChange={e => setLimit(Number(e.target.value))}>
+          <select id="qtd" onChange={event => handleLimits(event)}>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
