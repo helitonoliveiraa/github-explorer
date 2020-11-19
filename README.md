@@ -26,13 +26,19 @@
   <img src="./.github/dark01.png">
 </h1>
 
-<br /><br />
 
 
 <p  align="center">
   Vídeo demo<br/>
   <a href="https://youtu.be/XzqVy9ccoqo">
-    <img src="./.github/logoyoutube.png" atl="Github-Explorer" width="100">
+    <img src="./.github/logoyoutube.png" atl="Github-Explorer" width="50">
+  </a>
+</p>
+
+<p  align="center">
+  <br/>
+  <a href="https://github-explorer-style.netlify.app/">
+    <img src="./.github/button.png" atl="Github-Explorer" width="100">
   </a>
 </p>
 
