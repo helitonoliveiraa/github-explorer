@@ -113,8 +113,8 @@ const Dashboard: React.FC = () => {
         <input
           type="text"
           placeholder="Digite o nome do repositório"
-          onFocus={e => handleFocus()}
-          onBlur={e => setFocus(false)}
+          onFocus={() => handleFocus()}
+          onBlur={() => setFocus(false)}
           value={newRepository}
           onChange={e => setNewRepository(e.target.value)}
         />

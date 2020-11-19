@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled, { css } from 'styled-components';
-import { shade, lighten } from 'polished';
+import { shade } from 'polished';
 
 interface FormProps {
   hasError: boolean;
