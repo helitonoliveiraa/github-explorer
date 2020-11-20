@@ -26,6 +26,9 @@
   <img src="./.github/dark01.png">
 </h1>
 
+<h1>
+  <img src="./.github/github-explorer.gif" style="border-radius: 20px;">
+</h1>
 
 
 <p  align="center">
